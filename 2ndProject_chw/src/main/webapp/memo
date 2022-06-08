@@ -1,0 +1,120 @@
+-- 상품 테이블
+drop sequence seqprod;
+
+create sequence seqprod
+increment by 1
+start with 1
+minvalue 0
+nocache;
+
+drop table product cascade constraints purge;
+
+create table product(
+	pnum number primary key, -- 상품번호
+	pname varchar2(30) not null, -- 상품명
+	pcate varchar2(20) not null, -- 카테고리
+	price int default 0, -- 상품가격
+	pimage varchar2(100), -- 상품이미지
+	pmile int default 0, -- 마일리지
+	pqty int default 0, -- 상품수량			
+	pinfo varchar2(500) -- 상품정보
+);
+
+commit;
+
+-- 카테고리 테이블
+drop sequence seqcate ;
+
+create sequence seqcate  
+increment by 1
+start with 1
+minvalue 0
+maxvalue 10000
+nocache;
+
+drop table category cascade constraints purge ;
+create table category(
+	cnum number primary key,
+	code varchar2(20) not null,
+	cname varchar2(50) not null			
+);
+
+commit;
+
+-- 유저 테이블
+drop sequence seqmem;
+
+create sequence seqmem  
+increment by 1
+start with 1
+minvalue 0
+nocache;
+
+drop table member cascade constraints purge ;
+create table member(
+	num number primary key, -- 유저번호
+	name varchar2(30) not null, -- 유저이름
+	id varchar2(12) not null, -- 유저아이디
+	password varchar2(12) not null, -- 유저비번
+	address varchar2(150), -- 유저주소
+	email varchar2(20), -- 이메일
+	hp1 varchar2(10), -- 전화번호앞자리
+	hp2 varchar2(10) -- 전화번호 뒷자리
+);
+
+insert into member(num, name, id, password) 
+values(seqmem.nextval, '관리자', 'admin', '1234') ;
+insert into member(num, name, id, password) 
+values(seqmem.nextval, '유저', 'abc', '1234') ;
+
+
+commit;
+
+-- 매출 주문 테이블
+drop sequence seqorder ;
+
+create sequence seqorder 
+increment by 1
+start with 1
+minvalue 0
+maxvalue 10000
+nocache;
+ 
+drop table orders purge ;
+create table orders(
+	orderId number, -- 주문번호(orderseq)
+	memno number, -- 회원번호
+	pnum number, -- 상품번호
+	qty number, -- 수량
+	amount number -- 전체가격
+);
+commit;
+
+-- 커뮤니티게시판 테이블
+
+drop table board;
+
+create table board( 
+	num number not null primary key,
+	writer varchar2(10) not null,
+	email varchar2(10),
+	subject varchar2(20) not null,
+	passwd varchar2(12) not null,
+	reg_date date not null,
+	readcount int default 0,
+	ref number not null,
+	re_step number not null,
+	re_level number not null,
+	content varchar2(20) not null,
+	ip varchar2(15) not null
+);
+
+drop sequence board_seq;
+create sequence board_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 10000
+  nocache;
+  
+commit;

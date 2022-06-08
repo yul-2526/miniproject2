@@ -1,0 +1,39 @@
+@charset "EUC-KR";
+
+body{
+	background-color:#E5D7E2;
+	
+}
+
+table{
+	background-color:#f6e9f3
+}
+
+.right {
+	float: right;
+}
+
+.bt {
+	border-radius: 5px;
+	background-color: #5C3E66;
+	color: white;
+	padding: 3px;
+}
+
+.table {
+	border-radius: 5px;
+	text-align: center;
+	padding: 8px;
+	background-color:pink;
+}
+
+.menu{
+	border-radius: 5px;
+	background-color:#AB768D;
+	padding: 10px;
+}
+
+a{
+	text-decoration-line: none;
+}
+
